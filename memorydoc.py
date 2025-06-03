@@ -83,9 +83,10 @@ def set_table_vertical_position(table, position_cm):
     tbl_pr.append(tblp_pr)
 
 
-for page in range(1, 7):
+# 120页是60张纸
+for page in range(1, 121):
     table = doc.add_table(rows=2, cols=10)
-    set_table_vertical_position(table, 36.9)
+    set_table_vertical_position(table, 36.9)    # 调整这个数值，让表格对其打印纸的横线
 
     create_table(page, table)
 
