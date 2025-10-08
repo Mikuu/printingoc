@@ -41,31 +41,60 @@ def set_cells_paragraph(cells, pt=8.0):
 def create_table(page_number, table):
     set_table_border(table)
 
-    title_row_cells = table.rows[0].cells
-    title_row_cells[0].text = "当前页"
-    title_row_cells[1].text = "今天"
-    title_row_cells[2].text = "睡前"
-    title_row_cells[3].text = "早上"
-    title_row_cells[4].text = "第 2 天"
-    title_row_cells[5].text = "第 3 天"
-    title_row_cells[6].text = "第 5 天"
-    title_row_cells[7].text = "第 8 天"
-    title_row_cells[8].text = "第 15 天"
-    title_row_cells[9].text = "第 30 天"
-    set_cells_paragraph(title_row_cells, pt=6.5)
+    if page_number % 2 == 1:
+        # 奇数页的当前页在最右侧
+        title_row_cells = table.rows[0].cells
+        title_row_cells[0].text = "今天"
+        title_row_cells[1].text = "睡前"
+        title_row_cells[2].text = "早上"
+        title_row_cells[3].text = "第 2 天"
+        title_row_cells[4].text = "第 3 天"
+        title_row_cells[5].text = "第 5 天"
+        title_row_cells[6].text = "第 8 天"
+        title_row_cells[7].text = "第 15 天"
+        title_row_cells[8].text = "第 30 天"
+        title_row_cells[9].text = "当前页"
+        set_cells_paragraph(title_row_cells, pt=6.5)
 
-    index_row_cells = table.rows[1].cells
-    index_row_cells[0].text = str(page_number)
-    index_row_cells[1].text = str(page_number)
-    index_row_cells[2].text = str(page_number)
-    index_row_cells[3].text = str(page_number)
-    index_row_cells[4].text = str(page_number + 1)
-    index_row_cells[5].text = str(page_number + 2)
-    index_row_cells[6].text = str(page_number + 4)
-    index_row_cells[7].text = str(page_number + 7)
-    index_row_cells[8].text = str(page_number + 14)
-    index_row_cells[9].text = str(page_number + 29)
-    set_cells_paragraph(index_row_cells, pt=10)
+        index_row_cells = table.rows[1].cells
+        index_row_cells[0].text = str(page_number)
+        index_row_cells[1].text = str(page_number)
+        index_row_cells[2].text = str(page_number)
+        index_row_cells[3].text = str(page_number + 1)
+        index_row_cells[4].text = str(page_number + 2)
+        index_row_cells[5].text = str(page_number + 4)
+        index_row_cells[6].text = str(page_number + 7)
+        index_row_cells[7].text = str(page_number + 14)
+        index_row_cells[8].text = str(page_number + 29)
+        index_row_cells[9].text = str(page_number)
+        set_cells_paragraph(index_row_cells, pt=10)
+    else:
+        # 偶数页的当前页在最右侧
+        title_row_cells = table.rows[0].cells
+        title_row_cells[0].text = "当前页"
+        title_row_cells[1].text = "今天"
+        title_row_cells[2].text = "睡前"
+        title_row_cells[3].text = "早上"
+        title_row_cells[4].text = "第 2 天"
+        title_row_cells[5].text = "第 3 天"
+        title_row_cells[6].text = "第 5 天"
+        title_row_cells[7].text = "第 8 天"
+        title_row_cells[8].text = "第 15 天"
+        title_row_cells[9].text = "第 30 天"
+        set_cells_paragraph(title_row_cells, pt=6.5)
+
+        index_row_cells = table.rows[1].cells
+        index_row_cells[0].text = str(page_number)
+        index_row_cells[1].text = str(page_number)
+        index_row_cells[2].text = str(page_number)
+        index_row_cells[3].text = str(page_number)
+        index_row_cells[4].text = str(page_number + 1)
+        index_row_cells[5].text = str(page_number + 2)
+        index_row_cells[6].text = str(page_number + 4)
+        index_row_cells[7].text = str(page_number + 7)
+        index_row_cells[8].text = str(page_number + 14)
+        index_row_cells[9].text = str(page_number + 29)
+        set_cells_paragraph(index_row_cells, pt=10)
 
 
 def set_table_vertical_position(table, position_cm):
@@ -84,7 +113,7 @@ def set_table_vertical_position(table, position_cm):
 
 
 # 120页是60张纸
-for page in range(1, 121):
+for page in range(1, 101):
     table = doc.add_table(rows=2, cols=10)
     set_table_vertical_position(table, 36.9)    # 调整这个数值，让表格对其打印纸的横线
 
